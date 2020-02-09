@@ -2,8 +2,6 @@
 #include <SFML/Graphics.hpp>
 
 int main() {
-	int WIDTH = 1280;
-	int HEIGHT = WIDTH / 16 * 9;
 	const char* TITLE = "Ass Link"; //Ass Link
 	
 	sf::RenderWindow window(sf::VideoMode().getDesktopMode(), TITLE, sf::Style::Fullscreen);
