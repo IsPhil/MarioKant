@@ -1,20 +1,13 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Font.hpp>
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "Ass Link"); //Ass Link
-	sf::Font font;
+	int WIDTH = 1280;
+	int HEIGHT = WIDTH / 16 * 9;
+	const char* TITLE = "Ass Link"; //Ass Link
 	
-	if (!font.loadFromFile("res/fonts/dacasa.ttf")) {
-		std::cout << "Fuck" << std::endl;
-		return -1;
-	}
+	sf::RenderWindow window(sf::VideoMode().getDesktopMode(), TITLE, sf::Style::Fullscreen);
 	
-	sf::Text text("Ass Link", font, 40U);
-	text.setStyle(sf::Text::Bold);
-
 	while (window.isOpen()) {
 		sf::Event event;
 
@@ -24,7 +17,6 @@ int main() {
 		}
 
 		window.clear();
-		window.draw(text);
 		window.display();
 	}
 	
