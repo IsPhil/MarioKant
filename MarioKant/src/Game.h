@@ -1,12 +1,6 @@
 #pragma once
 
-#include <iostream>
-
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+#include "State.h" 
 
 class Game {
 public:
@@ -14,6 +8,7 @@ public:
 	~Game();
 
 	void updateSFMLEvents();
+	void updateDeltaTime();
 	void update();
 	void render();
 	void run();
@@ -21,8 +16,9 @@ public:
 private:
 	sf::RenderWindow *window;
 	sf::Event event;
+	sf::Clock dtClock;
 
-	const char* TITLE = "Ass Link"; //Ass Link
+	float dTime;					// Zeit, die für 1x updaten & 1x rendern benötigt wird in Sekunden
 
 	void initWindow();
 };
