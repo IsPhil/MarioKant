@@ -1,16 +1,20 @@
-#pragma once
+ #pragma once
 
-#include "State.h" 
+#include "States/GameState.h" 
 
 class Game {
 public:
 	Game();
 	~Game();
 
+	void endProgram();
+
 	void updateSFMLEvents();
 	void updateDeltaTime();
 	void update();
+	
 	void render();
+
 	void run();
 
 private:
@@ -18,7 +22,10 @@ private:
 	sf::Event event;
 	sf::Clock dtClock;
 
+	std::stack<State*> states;
+
 	float dTime;					// Zeit, die für 1x updaten & 1x rendern benötigt wird in Sekunden
 
 	void initWindow();
+	void initStates();
 };
