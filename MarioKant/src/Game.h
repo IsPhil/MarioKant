@@ -1,6 +1,6 @@
  #pragma once
 
-#include "States/GameState.h" 
+#include "State/GameState.h" 
 
 class Game {
 public:
@@ -23,9 +23,11 @@ private:
 	sf::Clock dtClock;
 
 	std::stack<State*> states;
+	std::map<std::string, int> supportedKeys;
 
 	float dTime;					// Zeit, die für 1x updaten & 1x rendern benötigt wird in Sekunden
 
 	void initWindow();
+	void initKeys();
 	void initStates();
 };

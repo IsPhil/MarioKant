@@ -2,6 +2,7 @@
 
 Game::Game() {
 	this->initWindow();
+	this->initKeys();
 	this->initStates();
 }
 
@@ -47,14 +48,32 @@ void Game::initWindow() {
 	this->window->setVerticalSyncEnabled(vsync_enabled);
 }
 
+void Game::initKeys() {
+	std::ifstream ifs("config/keys.ini");
+
+	if (ifs.is_open()) {
+		std::string key = "";
+		int key_val = 0;
+
+		while (ifs >> key >> key_val) {
+			this->supportedKeys[key] = key_val;
+		}
+	}
+
+	ifs.close();
+	
+	for (auto i : this->supportedKeys)
+		std::cout << i.first << " " << i.second << std::endl;
+}
+
 void Game::initStates() {
-	this->states.push(new GameState(this->window));
+	this->states.push(new GameState(this->window, &this->supportedKeys));
 }
 
 //-Other-Bois----------------------------------------------------------------------------
 
 void Game::endProgram() {
-
+	std::cout << "Exiting Game..." << std::endl;
 }
 
 void Game::updateSFMLEvents() {
@@ -80,6 +99,7 @@ void Game::update() {
 			this->states.pop();
 		}
 	} else {
+		this->endProgram();
 		this->window->close();
 	}
 }
@@ -87,7 +107,7 @@ void Game::update() {
 void Game::render() {
 	this->window->clear();
 
-	// Render
+	// Render shit here
 	if (!this->states.empty())
 		this->states.top()->render();
 
@@ -97,6 +117,10 @@ void Game::render() {
 
 
 void Game::run() {
+	std::cout << "Using SFML-Version 2.5.1" << std::endl;
+	std::cout << "Starting Game..." << std::endl;
+	std::cout << "------------------------------------------------------------------" << std::endl;
+
 	while (this->window->isOpen()) {
 		this->updateDeltaTime();
 		this->update();
