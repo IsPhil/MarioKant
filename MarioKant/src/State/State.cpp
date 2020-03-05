@@ -10,8 +10,14 @@ State::~State() {
 
 }
 
+void State::updateMousePos() {
+	this->mousePosScreen = sf::Mouse::getPosition();
+	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+}
+
 void State::checkQuit() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("PAUSE"))))		// TODO: Entfernen
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(this->keybinds.at("PAUSE"))))		// TODO: Nur Debug. Entfernen
 		this->quit = true;
 }
 

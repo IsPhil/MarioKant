@@ -15,9 +15,8 @@ void GameState::initKeybinds() {
 		std::string key = "";
 		std::string key2 = "";
 
-		while (ifs >> key >> key2) {
+		while (ifs >> key >> key2) 
 			this->keybinds[key] = this->supportedKeys->at(key2);
-		}
 	}
 
 	ifs.close();
@@ -40,6 +39,7 @@ void GameState::updateInput(const float& _dTime) {
 }
 
 void GameState::update(const float& _dTime) {
+	this->updateMousePos();
 	this->updateInput(_dTime);
 	this->player.update(_dTime);
 }

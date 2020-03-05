@@ -11,7 +11,7 @@ Game::~Game() {
 
 	while (!this->states.empty()) {
 		delete this->states.top();		// Entfernt Daten vom Pointer
-		this->states.pop();				// Entfernt den eigentlichen Pointer
+		this->states.pop();				// Entfernt den Pointer
 	}
 }
 
@@ -67,7 +67,7 @@ void Game::initKeys() {
 }
 
 void Game::initStates() {
-	this->states.push(new GameState(this->window, &this->supportedKeys));
+	this->states.push(new MainMenuState(this->window, &this->supportedKeys));
 }
 
 //-Other-Bois----------------------------------------------------------------------------
